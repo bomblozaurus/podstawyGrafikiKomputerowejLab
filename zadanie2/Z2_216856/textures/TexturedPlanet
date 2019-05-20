@@ -1,0 +1,4 @@
+class TexturedPlanet extends Planet{
+    TexturedPlanet(float radius, AstronomicalObject object, int orbitRadius, float offset, float speed, int c)
+
+}
