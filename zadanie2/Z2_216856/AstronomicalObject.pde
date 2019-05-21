@@ -1,13 +1,12 @@
 abstract class AstronomicalObject{
   int positionX, positionY;
-  color c = -1;
   float radius;
   PShape sphere;
 
   AstronomicalObject(float radius, color c){ 
     this.radius = radius;
-    this.c=c;
     sphere = createShape(SPHERE, radius/2);
+    sphere.setFill(c);
   }
 
   AstronomicalObject(float radius, PImage img){
@@ -33,9 +32,6 @@ abstract class AstronomicalObject{
   void drawIt(){ 
     pushMatrix();  
     {  
-      if(c != -1){
-        fill(c);
-      }
       shape(sphere);
     } 
     popMatrix(); 

@@ -56,7 +56,7 @@ void init() {
 
   Planet planet2 = new Planet(30, star, 235, -5, 0.2f, earth); 
   Moon moon21 = new Moon(8, planet2, 30, 10, -0.3f, #84e80b); 
-  Moon moon22 = new Moon(11, planet2, 44, -50, 0.25f, moon);
+  Moon moon22 = new Moon(11, planet2, 44, -50, 0.25f, #b28579);
   Moon moon23 = new Moon(14, planet2, 60, 41, 0.15f, #e08fb5);     
   planet2.addMoon(moon21);     
   planet2.addMoon(moon22);     
@@ -67,7 +67,7 @@ void init() {
   planet3.addMoon(moon31); 
 
   PeopledPlanet planet4 = new PeopledPlanet(55, star, 450, 0, -0.05f, #4a5e72);
-  Moon moon41 = new Moon(20, planet3, 50, -5, .4f, #b28579);
+  Moon moon41 = new Moon(20, planet3, 50, 90, .4f, moon);
   planet4.addMoon(moon41); 
 
   astronomicalObjects.add(star); 

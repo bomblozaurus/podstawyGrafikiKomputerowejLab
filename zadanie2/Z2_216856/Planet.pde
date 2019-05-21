@@ -4,7 +4,7 @@ int orbitX, orbitY;
 ArrayList <Moon> moons = new ArrayList<Moon>(); 
  
 Planet(float radius, AstronomicalObject object, int orbitRadius, float offset, float speed, int c){
-  super(radius, c);  
+  super(radius, c); 
   this.speed = speed;  
   this.offset = offset;
   setOrbit(object.positionX, object.positionY, orbitRadius);
@@ -31,14 +31,7 @@ void addMoon(Moon moon){
 
 void drawMoons(){
   for(Moon moon: moons){ 
-     pushMatrix(); 
-
-     translate(moon.orbitX, moon.orbitY);   
-     rotate((float)timer * moon.speed);   
-     translate(moon.orbitRadius, 0);  
-     moon.drawIt();  
-       
-     popMatrix();
+    moon.move();
     }
   }
 
@@ -46,6 +39,7 @@ void drawMoons(){
     pushMatrix();
       {
         translate(orbitX, orbitY);
+        rotateX(timer * 0.01f * speed);
         rotateZ(radians(offset)); 
         rotateY((float)timer * speed); 
         translate(orbitRadius, 0); 
@@ -57,9 +51,7 @@ void drawMoons(){
   } 
 
   void shine(){
-    if(c!=-1){ 
-    specular(c);
-    }
+    specular(200);
     shininess(2);
   }
 }
