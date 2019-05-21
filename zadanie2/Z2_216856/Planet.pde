@@ -16,6 +16,13 @@ Planet(float radius, AstronomicalObject object, int orbitRadius, float offset, f
   this.offset = offset;
   setOrbit(object.positionX, object.positionY, orbitRadius);
 } 
+
+Planet(float radius, AstronomicalObject object, int orbitRadius, float offset, float speed, PShape shape, float scale){
+  super(radius, shape, scale);  
+  this.speed = speed;  
+  this.offset = offset;
+  setOrbit(object.positionX, object.positionY, orbitRadius);
+} 
  
 void setOrbit(int x, int y, float orbitRadius){ 
     this.orbitX = x; 

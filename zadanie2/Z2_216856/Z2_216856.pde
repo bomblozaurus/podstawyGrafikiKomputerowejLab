@@ -5,22 +5,27 @@ ArrayList <AstronomicalObject> astronomicalObjects;
 ArrayList <Garbage> garbage;
 
 PImage sun, moon, earth, pluto;
+PShape object;
 
 void setup() {
-  size(1900, 1060, P3D);
+  size(1600, 900, P3D);
   noStroke();
 
   sun = loadImage("sun.jpg");
   moon = loadImage("moon.jpg");
   earth = loadImage("earth.jpg");
   pluto = loadImage("pluto.jpg");
-
-  try {
-    init();
-  } 
-  catch (Exception e) {
+  
+  object = loadShape("teaPot.obj");
+  
+  try{
+  object.rotate(PI);
+  } catch (Exception e){
+    println("ROTATE NIE DZIALA!");
     e.printStackTrace();
   }
+ 
+  init();
 }
 
 void draw()
@@ -48,7 +53,7 @@ void init() {
   }
 
   Star star = new Star(120, width/2, height/2, sun);
-  Planet planet1 = new Planet(25, star, 120, 10, -0.3f, #e80f0b);
+  Planet planet1 = new Planet(25, star, 120, 10, -0.3f, pluto);
   Moon moon11 = new Moon(6, planet1, 20, 0, -0.5f, #ca0ee8);     
   Moon moon12 = new Moon(10, planet1, 35, -2, 0.35f, #e80b6b);     
   planet1.addMoon(moon11);     
@@ -62,7 +67,7 @@ void init() {
   planet2.addMoon(moon22);     
   planet2.addMoon(moon23);       
 
-  Planet planet3 = new Planet(40, star, 350, 14, 0.1f, pluto);   
+  Planet planet3 = new Planet(40, star, 350, 14, 0.1f, object, 12.5);   
   Moon moon31 = new Moon(12, planet3, 35, -7, .3f, #f7674a); 
   planet3.addMoon(moon31); 
 
