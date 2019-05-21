@@ -5,7 +5,8 @@ abstract class AstronomicalObject{
 
   AstronomicalObject(float radius, color c){ 
     this.radius = radius;
-    sphere = createShape(SPHERE, radius/2);
+    int kind = (Math.random() > 0.5) ? SPHERE : BOX;
+    sphere = createShape(kind, radius/2);
     sphere.setFill(c);
   }
 

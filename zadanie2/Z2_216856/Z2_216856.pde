@@ -18,12 +18,12 @@ void setup() {
   
   object = loadShape("teaPot.obj");
   
-  try{
-  object.rotate(PI);
-  } catch (Exception e){
-    println("ROTATE NIE DZIALA!");
-    e.printStackTrace();
-  }
+  //try{
+  //object.rotate(PI);
+  //} catch (Exception e){
+  //  println("ROTATE NIE DZIALA!");
+  //  e.printStackTrace();
+  //}
  
   init();
 }
