@@ -9,6 +9,13 @@ Planet(float radius, AstronomicalObject object, int orbitRadius, float offset, f
   this.offset = offset;
   setOrbit(object.positionX, object.positionY, orbitRadius);
 } 
+
+Planet(float radius, AstronomicalObject object, int orbitRadius, float offset, float speed, PImage img){
+  super(radius, img);  
+  this.speed = speed;  
+  this.offset = offset;
+  setOrbit(object.positionX, object.positionY, orbitRadius);
+} 
  
 void setOrbit(int x, int y, float orbitRadius){ 
     this.orbitX = x; 
@@ -50,7 +57,9 @@ void drawMoons(){
   } 
 
   void shine(){
+    if(c!=-1){ 
     specular(c);
+    }
     shininess(2);
   }
 }

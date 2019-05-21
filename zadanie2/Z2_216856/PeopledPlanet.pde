@@ -3,23 +3,21 @@ class PeopledPlanet extends Planet{
         super(radius, object, orbitRadius, offset, speed,c);  
     }
 
+    PeopledPlanet(float radius, AstronomicalObject object, int orbitRadius, float offset, float speed, PImage img){
+        super(radius, object, orbitRadius, offset, speed,img);  
+    }
+
     void move(){
     pushMatrix();
       {
-        translate(orbitX, orbitY);
-        rotateZ(radians(offset)); 
-        rotateY((float)timer * speed); 
-        translate(orbitRadius, 0); 
-        rotateZ(radians(-offset));
+        super.move();
         shine();
-        drawIt(); 
-        drawMoons();
       }
     popMatrix();
     } 
 
     void shine(){
-        spotLight(255,255,255, 0,0,0, 0,1000,0,radians(45), 1);
+        spotLight(255,255,255, 0,0,0, 0,-1000,0,radians(45), 1);
     }
 
 }
