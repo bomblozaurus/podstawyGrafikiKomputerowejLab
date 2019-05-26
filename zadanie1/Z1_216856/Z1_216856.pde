@@ -1,4 +1,4 @@
-float timer = 0.f;
+float timer = 1.f;
 final int garbageNumber = 750;
 
 ArrayList <AstronomicalObject> astronomicalObjects;
@@ -55,13 +55,16 @@ void init(){
   Planet planet4 = new Planet(55, star, 450,-0.05f , #4a5e72);
   Moon moon41 = new Moon(20, planet3, 50, .4f, #b28579);
   planet4.addMoon(moon41); 
-   
+  
+
+  Comet comet1 = new Comet(40, star, 300, 60, -0.1f, #990000);
    
   astronomicalObjects.add(star); 
   astronomicalObjects.add(planet1);  
   astronomicalObjects.add(planet2);  
   astronomicalObjects.add(planet3);
   astronomicalObjects.add(planet4);
+  astronomicalObjects.add(comet1);
   
   }  
  
@@ -179,4 +182,46 @@ class Garbage extends Star{
       }  
     popMatrix(); 
   }
+}
+
+class Comet extends Planet{
+  float tailLength;
+
+
+  Comet(float radius, AstronomicalObject object, int orbitRadius, float tailLength, float speed, int c){
+    super(radius, object, orbitRadius, speed,c);
+    this.tailLength = tailLength;
+  } 
+
+void move(){
+    pushMatrix();
+      {
+        translate(orbitX, orbitY); 
+        rotate((float)timer * speed); 
+        translate(orbitRadius, 0); 
+        super.drawIt(); 
+        drawTail();
+      }
+    popMatrix();
+  } 
+
+  void drawTail(){
+    pushMatrix();
+    {
+      translate(0, 1.2f * radius);
+
+      beginShape();
+      {
+        // rotate(radians(-90));
+        vertex(0, -tailLength/2);
+        vertex(-tailLength/4, tailLength/2);
+        vertex(0,0);
+        vertex(tailLength/4, tailLength/2);
+        vertex(0, -tailLength/2);
+      }
+      endShape();
+    }
+    popMatrix();
+  }
+
 }
