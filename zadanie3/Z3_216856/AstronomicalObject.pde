@@ -49,41 +49,4 @@ abstract class AstronomicalObject{
     } 
     popMatrix(); 
   }
-
-  private float getScale(PShape shape, float radius){
-    if(shape.getVertexCount()<0){
-      throw new IllegalArgumentException("Shape has no vertecies");
-    }
-    float xMin, xMax, yMin, yMax, zMin, zMax;
-    PVector vertex = shape.getVertex(0);
-    xMin = xMax = vertex.x;
-    yMin = yMax = vertex.y;
-    zMin = zMax = vertex.z;
-    for(int i=1;i<shape.getVertexCount(); i++){
-      vertex = shape.getVertex(i);
-
-      if(vertex.x < xMin) {
-        xMin = vertex.x;
-      } else if (vertex.x > xMax){
-        xMax = vertex.x;
-      }
-
-      if(vertex.y < yMin) {
-        yMin = vertex.y;
-      } else if (vertex.y > yMax){
-        yMax = vertex.y;
-      }
-
-      if(vertex.z < zMin) {
-        zMin = vertex.z;
-      } else if (vertex.z > zMax){
-        zMax = vertex.z;
-      }
-    }
-
-    java.util.List<Float> list = java.util.Arrays.asList(new Float[] {xMax - xMin, yMax - yMin, zMax - zMin});
-    float scale = radius / java.util.Collections.max(list);
-
-    return scale;
-  }
 } 

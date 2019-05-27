@@ -6,7 +6,7 @@ class Garbage extends AstronomicalObject{
   void drawIt(){ 
     pushMatrix();  
     {  
-      fill((int)Math.random() * 200 + 20); 
+      fill((int)(Math.random() * 200 + 20)); 
       ellipse(0,0, radius, radius);
     } 
     popMatrix(); 
