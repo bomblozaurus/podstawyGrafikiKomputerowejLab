@@ -15,6 +15,8 @@ PShape object, spaceshipModel;
 
 Camera camera;
 
+int cameraSwitch;
+
 void setup() {
   size(1600, 900, P3D);
   noStroke();
@@ -41,7 +43,16 @@ void draw()
 {      
   background(0);
   lights();
-  spaceship.fpsCamera();
+  switch(cameraSwitch) {
+  case 1:
+    spaceship.fpsCamera();
+    break;
+  case 3:
+    spaceship.tpsCamera();
+    break;
+  }
+
+  //spaceship.tpsCamera();
   camera.feed();
 
   for (Garbage g : garbage) {
@@ -119,6 +130,12 @@ void keyReleased() {
   if (key == 's') spaceship.backward = false;
   if (key == 'a') spaceship.left = false;
   if (key == 'd') spaceship.right = false;
+}
+
+void keyTyped(){
+  if(key == '1') cameraSwitch = 1;
+  if(key == '2') cameraSwitch = 2;
+  if(key == '3') cameraSwitch = 3;
 }
 
 void mouseWheel(MouseEvent event) {

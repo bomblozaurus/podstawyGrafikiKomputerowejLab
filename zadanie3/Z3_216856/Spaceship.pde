@@ -1,14 +1,14 @@
-class Spaceship {  //<>//
+class Spaceship {  //<>// //<>// //<>//
   PVector position, direction = new PVector(1, 0, 0);
   float rotateX, rotateY, rotateZ;
   float velocity = 1.f, distance = 1;
   boolean forward, backward, left, right, up, down;
   PShape shape;
 
-  Spaceship(PShape shape) {
+  Spaceship(PShape shape, float posX, float posY, float posZ) {
     this.shape = shape;
     rotateX = rotateY = rotateZ = 0.f;
-    position = new PVector(500, 500, 100);
+    position = new PVector(posX, posY, posZ);
   }
 
   void move() {
@@ -31,20 +31,18 @@ class Spaceship {  //<>//
 
     updateDirection();
 
-    if (forward) velocity = {
-      Math.abs(velocity);
-    calculateNewPosition();
-
+    if (forward) {
+      velocity = Math.abs(velocity);
+      calculateNewPosition();
     }
     if (backward) {
       velocity = -(Math.abs(velocity));
-    calculateNewPosition();
+      calculateNewPosition();
     }
-
   }
 
-  void updateDirection(){
-    PVector newDirection = new PVector(1,0,0);
+  void updateDirection() {
+    PVector newDirection = new PVector(1, 0, 0);
 
     rotateAroundX(newDirection);
     rotateAroundZ(newDirection);
@@ -52,8 +50,8 @@ class Spaceship {  //<>//
     this.direction = newDirection;
   }
 
-  void calculateNewPosition() {}
-    this.position.add(newDirection.mult(velocity));
+  void calculateNewPosition() {
+    this.position.add(direction.mult(velocity));
   }
 
   private void rotateAroundX(PVector direction) {
@@ -93,9 +91,14 @@ class Spaceship {  //<>//
     camera.jump(position.x, position.y, position.z);
     camera.aim(position.x + direction.x, position.y + direction.y, position.z + direction.z);
   }
-  
-  void updateCamera(){
-    
+
+  void tpsCamera() {
+    float distance = 100;
+    camera.jump(position.x - distance * direction.x, position.y - distance * direction.y - 30, position.z - distance * direction.z);
+    camera.aim(position.x + direction.x, position.y + direction.y, position.z + direction.z);
+  }
+
+  void updateCamera() {
   }
 
   void drawIt() {
