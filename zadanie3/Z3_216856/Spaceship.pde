@@ -97,6 +97,11 @@ class Spaceship {  //<>// //<>// //<>//
     camera.jump(position.x - distance * direction.x, position.y - distance * direction.y - 30, position.z - distance * direction.z);
     camera.aim(position.x + direction.x, position.y + direction.y, position.z + direction.z);
   }
+  
+  void sideCamera(){
+    camera.jump(position.x, position.y, position.z + 200);
+    camera.aim(position.x + direction.x, position.y + direction.y, position.z + direction.z);
+  }
 
   void updateCamera() {
   }

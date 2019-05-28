@@ -47,6 +47,9 @@ void draw()
   case 1:
     spaceship.fpsCamera();
     break;
+  case 2:
+    spaceship.sideCamera();
+    break;
   case 3:
     spaceship.tpsCamera();
     break;
@@ -105,7 +108,7 @@ void init() {
   astronomicalObjects.add(planet3);
   astronomicalObjects.add(planet4);
 
-  spaceship = new Spaceship(spaceshipModel);
+  spaceship = new Spaceship(spaceshipModel, 500, 100, -100);
 }  
 
 void keyPressed() {
@@ -132,10 +135,15 @@ void keyReleased() {
   if (key == 'd') spaceship.right = false;
 }
 
-void keyTyped(){
-  if(key == '1') cameraSwitch = 1;
-  if(key == '2') cameraSwitch = 2;
-  if(key == '3') cameraSwitch = 3;
+void keyTyped() {
+  if (key == '1') cameraSwitch = 1;
+  if (key == '2') cameraSwitch = 2;
+  if (key == '3') cameraSwitch = 3;
+  
+ if(key == '[') astronomicalObjects.get(0).positionX += 10;
+ if(key == ']') astronomicalObjects.get(0).positionX -= 10;
+ if(key == ';') astronomicalObjects.get(0).positionY += 10;
+ if(key == '\'') astronomicalObjects.get(0).positionY -= 10;
 }
 
 void mouseWheel(MouseEvent event) {
