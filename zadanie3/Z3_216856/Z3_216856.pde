@@ -1,3 +1,7 @@
+import peasy.*;
+import queasycam.*;
+import damkjer.ocd.*;
+
 float timer = 3.5f;
 final int garbageNumber = 750;
 int counter = 0;
@@ -5,10 +9,11 @@ int counter = 0;
 ArrayList <AstronomicalObject> astronomicalObjects;
 ArrayList <Garbage> garbage;
 Spaceship spaceship;
-SpaceshipController controller;
 
 PImage sun, moon, earth, pluto;
 PShape object, spaceshipModel;
+
+Camera camera;
 
 void setup() {
   size(1600, 900, P3D);
@@ -20,23 +25,24 @@ void setup() {
   pluto = loadImage("pluto.jpg");
 
   object = loadShape("teaPot.obj");
-  spaceshipModel = loadShape("teaPot.obj");
-  spaceshipModel.scale(10);
+  object.rotateX(PI);
 
-  try {
-    object.rotateX(PI);
-  } 
-  catch (Exception e) {
-    e.printStackTrace();
-  }
+  spaceshipModel = loadShape("spaceship/SpaceShip.obj");
+  spaceshipModel.scale(2);
+  spaceshipModel.rotateX(PI);
+  spaceshipModel.rotateY(radians(-90));
 
   init();
+
+  camera = new Camera(this);
 }
 
 void draw()
 {      
-  background(255);
+  background(0);
   lights();
+  spaceship.fpsCamera();
+  camera.feed();
 
   for (Garbage g : garbage) {
     g.move();
@@ -91,40 +97,31 @@ void init() {
   spaceship = new Spaceship(spaceshipModel);
 }  
 
-void keyTyped() {
-  if (key == 'a') {
-    spaceship.moveLeft = true;
+void keyPressed() {
+  if (key == CODED) {
+    if (keyCode == UP) spaceship.up = true;
+    if (keyCode == DOWN) spaceship.down = true;
   }
-  if (key == 'd') {
-    spaceship.moveRight = true;
-  }
-  if (key == 'w') {
-    spaceship.moveForward = true;
-  }
-  if (key == 's') {
-    spaceship.moveBackward = true;
-  }
-  if(keyCode == UP){
-    spaceship.rotateUp = true;
-    println("X");
-  }
+
+  if (key == 'w') spaceship.forward = true;
+  if (key == 's') spaceship.backward = true;
+  if (key == 'a') spaceship.left = true;
+  if (key == 'd') spaceship.right = true;
 }
 
 void keyReleased() {
-   if (key == 'a') {
-    spaceship.moveLeft = false;
+  if (key == CODED) {
+    if (keyCode == UP) spaceship.up = false;
+    if (keyCode == DOWN) spaceship.down = false;
   }
-  if (key == 'd') {
-    spaceship.moveRight = false;
-  }
-  if (key == 'w') {
-    spaceship.moveForward = false;
-  }
-  if (key == 's') {
-    spaceship.moveBackward = false;
-  }
-  if(keyCode == UP){
-    spaceship.rotateUp = false;
-    println("X");
-  }
+
+  if (key == 'w') spaceship.forward = false;
+  if (key == 's') spaceship.backward = false;
+  if (key == 'a') spaceship.left = false;
+  if (key == 'd') spaceship.right = false;
+}
+
+void mouseWheel(MouseEvent event) {
+  spaceship.velocity -= event.getCount();
+  if (spaceship.velocity <1) spaceship.velocity=1.f;
 }
