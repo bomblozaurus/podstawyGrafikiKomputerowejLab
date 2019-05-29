@@ -1,5 +1,3 @@
-import peasy.*;
-import queasycam.*;
 import damkjer.ocd.*;
 
 float timer = 3.5f;
