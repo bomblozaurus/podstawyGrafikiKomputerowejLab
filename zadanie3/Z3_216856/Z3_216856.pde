@@ -33,8 +33,6 @@ void setup() {
   spaceshipModel.rotateY(radians(-90));
 
   init();
-
-  camera = new Camera(this);
 }
 
 void draw()
@@ -46,14 +44,13 @@ void draw()
     spaceship.fpsCamera();
     break;
   case 2:
-    spaceship.sideCamera();
+    spaceship.midCamera();
     break;
   case 3:
     spaceship.tpsCamera();
     break;
   }
 
-  //spaceship.tpsCamera();
   camera.feed();
 
   for (Garbage g : garbage) {
@@ -107,6 +104,7 @@ void init() {
   astronomicalObjects.add(planet4);
 
   spaceship = new Spaceship(spaceshipModel, 500, 100, -100);
+    camera = new Camera(this, 500,100,radians(140));
 }  
 
 void keyPressed() {

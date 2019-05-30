@@ -1,4 +1,4 @@
-class Spaceship {  //<>// //<>// //<>//
+class Spaceship {  //<>// //<>// //<>// //<>//
   PVector position, direction = new PVector(1, 0, 0);
   float rotateX, rotateY, rotateZ;
   float velocity = 1.f, distance = 1;
@@ -52,6 +52,7 @@ class Spaceship {  //<>// //<>// //<>//
 
   void calculateNewPosition() {
     this.position.add(direction.mult(velocity));
+    direction.normalize();
   }
 
   private void rotateAroundX(PVector direction) {
@@ -94,13 +95,16 @@ class Spaceship {  //<>// //<>// //<>//
 
   void tpsCamera() {
     float distance = 100;
-    camera.jump(position.x - distance * direction.x, position.y - distance * direction.y - 30, position.z - distance * direction.z);
+    float offsetY = 30;
+    
+    camera.jump(position.x - distance * direction.x, position.y - distance * direction.y - offsetY, position.z - distance * direction.z);
     camera.aim(position.x + direction.x, position.y + direction.y, position.z + direction.z);
   }
   
-  void sideCamera(){
-    camera.jump(position.x, position.y, position.z + 200);
-    camera.aim(position.x + direction.x, position.y + direction.y, position.z + direction.z);
+  void midCamera(){
+   float distance = 85;
+   camera.jump(position.x - distance * direction.x, position.y - distance * direction.y - 20, position.z - distance * direction.z);
+   camera.aim(position.x + direction.x, position.y + direction.y, position.z + direction.z);
   }
 
   void updateCamera() {
